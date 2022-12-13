@@ -76,3 +76,25 @@ else
 }
 
 });
+
+function nextPlayer()
+{
+    
+    activePlayer=== 0 ?activePlayer=1:activePlayer = 0;
+    roundScore=0;
+    var current0 = document.getElementById('current-0');
+    var current1 = document.getElementById('current-1');
+    current0.textContent='0';
+    current1.textContent='0';
+
+    //Toggling the classes through js
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+        
+    //Hide the dice when 1 appears
+    document.querySelector('.dice').style.display='none';
+}
+
+//Note1: we do not put () after the function name in addEbentListeber, since we are not clicking it.
+
+document.querySelector(".btn-new").addEventListener("click",init);
