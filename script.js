@@ -15,3 +15,64 @@ init();     //initializing the game
 //math.random()*6 gives a number between 0 and 5
 //math.random()*6+1 gives a number between 1 and 6
 //math.floor(4.6)=4
+
+document.querySelector('.btn-roll').addEventListener("click",function()
+{
+    if(gamePlaying)
+    {
+    
+    // 1. Random number 
+    var dice=Math.floor(Math.random()*6)+1;
+
+    //2. Display the results
+    const diceDOM = document.querySelector('.dice');
+    diceDOM.style.display='block';
+    diceDOM.src='dice-'+dice+'.png';
+
+    //3. Update the round score if the rolled number was not a one
+    if(dice!==1)
+    {
+        //update the score
+        roundScore+=dice;
+        document.getElementById('current-'+activePlayer).textContent=roundScore;
+    }
+    else{
+        //next player's turn
+        nextPlayer();
+
+        }
+}    
+});
+
+document.querySelector('.btn-hold').addEventListener("click",function()
+{
+    if(gamePlaying)
+    {
+    
+    //1. Add current score to global score
+    scores[activePlayer]+=roundScore;
+
+    //2.Update the Ui
+    document.getElementById('score-'+activePlayer).textContent=scores[activePlayer];
+    
+
+    //3.Check if the player won the game
+    if(scores[activePlayer]>=100)
+    {
+        document.getElementById('name-'+activePlayer).textContent='Winner!';
+         //Hide the dice when winner is declared
+    document.querySelector('.dice').style.display='none';
+    //Changing the active player to winner player
+    document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
+    document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
+    gamePlaying=false;
+
+    }
+else
+{
+    nextPlayer();
+}
+        
+}
+
+});
