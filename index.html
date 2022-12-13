@@ -36,6 +36,6 @@
             <img src="dice-5.png" alt="Dice" class="dice">
         </div>
         
-        <script src="app.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>
